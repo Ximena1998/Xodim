@@ -41,7 +41,6 @@
                 <td>{{empleado.direccion}}</td>
                 <td>{{empleado.cargo}}</td>
                 <td>{{empleado.valor}}</td>
-                <td>{% url 'fecha'%}</td>
                 <td> <a class="btn btn-success" style="margin: 0px 10px 0px" href="{% url 'editarEmpleado' empleado.cedula%} ">EDITAR</a> <a class="btn btn-danger" href="{% url 'eliminarEmpleado' empleado.cedula%}">ELIMINAR</a></td>
             </tr>
             {% endfor %}
