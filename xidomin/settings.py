@@ -25,7 +25,7 @@ SECRET_KEY = 'b+ey!7hpm^l%2v&8+i+_4of(omcsrw%2)g^1e56e3f5ips-e&-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['xodim.herokuapp.com']
 STATICFILES_DIRS=['C:/Users/hxpuc/OneDrive/Escritorio/xodim/xidomin/Proyecto/xidomin/static']
 
 
