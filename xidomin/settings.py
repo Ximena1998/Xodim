@@ -25,7 +25,7 @@ SECRET_KEY = 'b+ey!7hpm^l%2v&8+i+_4of(omcsrw%2)g^1e56e3f5ips-e&-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['xodim.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 STATICFILES_DIRS=['C:/Users/hxpuc/OneDrive/Escritorio/xodim/xidomin/Proyecto/xidomin/static']
 
 
@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -89,6 +89,17 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd765f25q47tr9a',
+        'USER': 'jekqsdjvgacgbu',
+        'PASSWORD': 'aaeb6ff5438c590f7d38c7b4900659261e6d421651bfec5af50747c2167bb8e6',
+        'HOST': 'ec2-34-206-31-217.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
