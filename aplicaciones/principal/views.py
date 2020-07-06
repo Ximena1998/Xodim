@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Empleado
-from .forms import EmpleadoForm
+from .models import Empleado, Sintomatología
+from .forms import EmpleadoForm, SintomatologiaForm
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -60,8 +60,6 @@ def fecha(request): # primera vista
     print (time.strftime("%d/%m/%y"))
     return 
 
-def home(request):
-    return render(request,'tables.html')
 
 def registerAdmin(request):
     if request.method == "POST":
@@ -72,3 +70,22 @@ def registerAdmin(request):
     else:
         form = UserCreationForm()
     return render(request,'admin.html',{'form':form})
+def iniciarSesion (request):
+    return render (request, 'inicioSesion.html')
+
+def registroSintomatologia(request):
+    if request.method == 'GET': #si la peticion viene por un metodo get lo mande en la varible form
+        form = SintomatologiaForm()
+        contexto = {
+             'form':form
+        }
+    else:
+        form = SintomatologiaForm(request.POST)
+        contexto = {
+             'form':form
+        }
+        if form.is_valid():
+             form.save()
+             return redirect('iniciarSesion')
+    return render (request, 'registroSintomatologia.html', contexto)
+

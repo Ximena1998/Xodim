@@ -20,6 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'b+ey!7hpm^l%2v&8+i+_4of(omcsrw%2)g^1e56e3f5ips-e&-'
 
@@ -27,7 +30,7 @@ SECRET_KEY = 'b+ey!7hpm^l%2v&8+i+_4of(omcsrw%2)g^1e56e3f5ips-e&-'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-STATICFILES_DIRS=['C:/Users/hxpuc/OneDrive/Escritorio/xodim/xidomin/Proyecto/xidomin/static']
+STATICFILES_DIRS=['C:Escritorio/xodim/xidomin/Proyecto/xidomin/static']
 
 
 # Application definition
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'aplicaciones.principal',
+
 ]
 
 MIDDLEWARE = [
