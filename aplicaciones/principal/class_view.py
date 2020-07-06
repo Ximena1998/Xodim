@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from django.urls import reverse_lazy
-from .forms import EmpleadoForm
-from .models import Empleado
+from .forms import EmpleadoForm, SintomatologiaForm
+from .models import Empleado, Sintomatología
 
 #class view():
 #     dispatch: verifica el metodo de la solicitud http y ya no se necesita los iff ni get ni post
@@ -11,7 +11,7 @@ from .models import Empleado
 #     para create tengo una funcion post () -- def post (self, request, arg, keyarg)
 
 class empleadoList (ListView):
-     model = Empleado
+     model = Empleado, Sintomatología
      template_name = 'index.html'
 
 class empleadoCreate(CreateView):
@@ -30,3 +30,9 @@ class empleadoDelete (DeleteView):
      model = Empleado
      template_name = 'verificacion.html'
      success_url = reverse_lazy('index')
+
+class sintomatologiaCreate(CreateView):
+     model = Sintomatología
+     form_class = SintomatologiaForm
+     template_name = 'registroSintomatologia.html'
+     success_url = reverse_lazy('iniciarSesion')

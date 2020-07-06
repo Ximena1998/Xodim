@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Empleado
-from .forms import EmpleadoForm
+from .models import Empleado, Sintomatología
+from .forms import EmpleadoForm, SintomatologiaForm
 from django.http import HttpResponse
 import time
 
@@ -54,3 +54,22 @@ def fecha(request): # primera vista
     print(time.strftime("%H:%M:%S")) #Formato de 24 horas
     print (time.strftime("%d/%m/%y"))
     return 
+
+def iniciarSesion (request):
+    return render (request, 'inicioSesion.html')
+
+def registroSintomatologia(request):
+    if request.method == 'GET': #si la peticion viene por un metodo get lo mande en la varible form
+        form = SintomatologiaForm()
+        contexto = {
+             'form':form
+        }
+    else:
+        form = SintomatologiaForm(request.POST)
+        contexto = {
+             'form':form
+        }
+        if form.is_valid():
+             form.save()
+             return redirect('iniciarSesion')
+    return render (request, 'registroSintomatologia.html', contexto)

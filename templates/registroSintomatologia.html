@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" style=" padding: 10px;">
+        <!--  post porque sirve para enviar informacion de registro-->
+        <div class="form-group">
+             {%csrf_token%}
+             <!--Con esto validmaos quien es el usuraio y cual es el token que pertenece al usuario q envia peticion-->
+             {{form.as_p}}
+             <button type="submit" class="btn btn-info">REGISTRAR
+             </button>
+
+        </div>
+   </form>
+</body>
+</html>
