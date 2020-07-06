@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +33,7 @@ STATICFILES_DIRS=['C:/Users/hxpuc/OneDrive/Escritorio/xodim/xidomin/Proyecto/xid
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware'
 ]
 
 ROOT_URLCONF = 'xidomin.urls'
@@ -96,10 +99,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd765f25q47tr9a',
-        'USER': 'jekqsdjvgacgbu',
-        'PASSWORD': 'aaeb6ff5438c590f7d38c7b4900659261e6d421651bfec5af50747c2167bb8e6',
-        'HOST': 'ec2-34-206-31-217.compute-1.amazonaws.com',
+        'NAME': 'd94ao80kccorh9',
+        'USER': 'mcvobiytpepwle',
+        'PASSWORD': 'e5cc8fd44a9244d5c0840b6f77e4de713b434b70a29de950f7608b17b4f30c98',
+        'HOST': 'ec2-35-175-155-248.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -126,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ec'
 
 TIME_ZONE = 'UTC'
 
@@ -136,8 +139,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL= reverse_lazy('index')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
