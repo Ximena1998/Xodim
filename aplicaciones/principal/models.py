@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import date
 # Create your models here.
 
 class Empleado(models.Model):
@@ -16,3 +16,14 @@ class Empleado(models.Model):
 def __str__(self): #self recibe todo metodo de una clase
     return self.nombres
     
+class Sintomatología(models.Model):
+    id = models.AutoField(primary_key = True)
+    mucosidad = models.CharField(max_length = 2)
+    dolorMuscular = models.CharField(max_length = 2)
+    sintGastrointestinal = models.CharField(max_length = 2)
+    fechaRegistro = models.DateField(("Date"), default=date.today)
+    faltaAire = models.CharField(max_length = 2)
+    temperatura = models.CharField(max_length = 2)
+    tos = models.CharField(max_length = 2)
+    contacto = models.CharField(max_length = 2)
+    sintCedula = models.ForeignKey(Empleado, on_delete=models.CASCADE)

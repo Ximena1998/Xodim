@@ -19,6 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'b+ey!7hpm^l%2v&8+i+_4of(omcsrw%2)g^1e56e3f5ips-e&-'
 
@@ -26,7 +29,7 @@ SECRET_KEY = 'b+ey!7hpm^l%2v&8+i+_4of(omcsrw%2)g^1e56e3f5ips-e&-'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-STATICFILES_DIRS=['C:/Users/hxpuc/OneDrive/Escritorio/xodim/xidomin/Proyecto/xidomin/static']
+STATICFILES_DIRS=['C:Escritorio/xodim/xidomin/Proyecto/xidomin/static']
 
 
 # Application definition
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'aplicaciones.principal',
+
 ]
 
 MIDDLEWARE = [
@@ -96,10 +100,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd765f25q47tr9a',
-        'USER': 'jekqsdjvgacgbu',
-        'PASSWORD': 'aaeb6ff5438c590f7d38c7b4900659261e6d421651bfec5af50747c2167bb8e6',
-        'HOST': 'ec2-34-206-31-217.compute-1.amazonaws.com',
+        'NAME': 'd94ao80kccorh9',
+        'USER': 'mcvobiytpepwle',
+        'PASSWORD': 'e5cc8fd44a9244d5c0840b6f77e4de713b434b70a29de950f7608b17b4f30c98',
+        'HOST': 'ec2-35-175-155-248.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }

@@ -15,17 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from aplicaciones.principal.views import inicio, registroEmpleado, editarEmpleado, eliminarEmpleado, fecha
-from aplicaciones.principal.class_view import empleadoList, empleadoCreate, empleadoUpdate, empleadoDelete
+from aplicaciones.principal.views import inicio, registroEmpleado, editarEmpleado, eliminarEmpleado, fecha, iniciarSesion, registroSintomatologia
+from aplicaciones.principal.class_view import empleadoList, empleadoCreate, empleadoUpdate, empleadoDelete,  sintomatologiaCreate
 from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
   #  path('', inicio,name ='index'), lo cambiamos paa las clases
+    #  path('', inicio,name ='index'), lo cambiamos paa las clases
     path('',empleadoCreate.as_view(), name = 'registroEmpleado'),
     #path('registroEmpleado/',registroEmpleado, name='registroEmpleado' ),
     path('listaEmpleado/',empleadoList.as_view(), name='index' ),
     #path('editarEmpleado/<str:Cedula>/', editarEmpleado, name = 'editarEmpleado'),
     path('editarEmpleado/<str:pk>/', empleadoUpdate.as_view(), name = 'editarEmpleado'),
    # path('eliminarEmpleado/<str:Cedula>/', eliminarEmpleado, name = 'eliminarEmpleado')
-    path('eliminarEmpleado/<str:pk>/', empleadoDelete.as_view(), name = 'eliminarEmpleado')
+    path('eliminarEmpleado/<str:pk>/', empleadoDelete.as_view(), name = 'eliminarEmpleado'),
+
+    path('iniciarSesion/', iniciarSesion ,name = 'iniciarSesion'),
+
+    path('registroSintomatologia/', sintomatologiaCreate.as_view(), name = 'registroSintomatologia')
 ]
