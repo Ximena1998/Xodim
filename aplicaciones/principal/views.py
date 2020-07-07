@@ -13,7 +13,7 @@ def inicio(request): #La que me pide peticion del navegador
      contexto = {
            'empleados':empleados
      }
-     return render (request, 'tables.html', contexto)
+     return render (request, 'index.html', contexto)
 
 def registroEmpleado(request):
     if request.method == 'GET': #si la peticion viene por un metodo get lo mande en la varible form
@@ -28,8 +28,8 @@ def registroEmpleado(request):
         }
         if form.is_valid():
              form.save()
-             return redirect('tables')
-    return render (request, 'index.html', contexto)
+             return redirect('index')
+    return render (request, 'registroEmp.html', contexto)
     
 
 def editarEmpleado(request, Cedula):
@@ -70,7 +70,9 @@ def registerAdmin(request):
     else:
         form = UserCreationForm()
     return render(request,'admin.html',{'form':form})
+
 def iniciarSesion (request):
+    
     return render (request, 'inicioSesion.html')
 
 def registroSintomatologia(request):
