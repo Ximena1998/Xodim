@@ -1,1 +1,0 @@
-web: gunicorn xidomin.wsgi:application --log-file -
