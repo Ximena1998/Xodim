@@ -1,0 +1,1 @@
+web: gunicorn xodin.wsgi:application --log-file -
