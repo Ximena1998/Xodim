@@ -31,7 +31,7 @@ class SintomatologiaForm(forms.ModelForm):
             'dolorMuscular': '¿Tiene dolor muscular?',
             'sintGastrointestinal': '¿Tienes alguna molestía Gastrointestinal?',
             'fechaRegistro': 'Fecha de Registro',
-            'faltaAire': '¿Tienes sensación de falta de aire brusco (En ausencia de cualquier otra patología que justifique este síntoma)?',
+            'faltaAire': '¿Tienes sensación de falta de aire brusco ?',
             'temperatura': '¿Tiene Fiebre?',
             'tos': '¿Tienes tos seca y persitente?',
             'contacto': '¿Has tenido contacto estrecho con algún paciente positivo confirmado?',

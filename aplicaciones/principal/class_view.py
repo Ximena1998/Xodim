@@ -16,14 +16,14 @@ from .models import Empleado, Sintomatología
 class empleadoList (ListView):
 
      model = Empleado, Sintomatología
-     template_name = 'tables.html'
+     template_name = 'index.html'
 
 
 class empleadoCreate(CreateView):
      model = Empleado
      form_class = EmpleadoForm
-     template_name = 'index.html'
-     success_url = reverse_lazy('tables')
+     template_name = 'registroEmp.html'
+     success_url = reverse_lazy('index')
 
      
 
@@ -31,7 +31,7 @@ class empleadoCreate(CreateView):
 class empleadoUpdate (UpdateView):
      model = Empleado
      form_class = EmpleadoForm
-     template_name = 'index.html'
+     template_name = 'editar.html'
      success_url = reverse_lazy('index')
 
 

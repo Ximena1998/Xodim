@@ -96,10 +96,22 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-"""
+
 DATABASES = {
         'default': dj_database_url.config
 }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd3rqre0702m3e3',
+        'USER': 'jwhkqjtdtihzsu',
+        'PASSWORD': '86e2bc141c78a17319778aa189c9f4ab30bdcd0b861a2573a9552c115dc7a612',
+        'HOST': 'ec2-52-72-65-76.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
