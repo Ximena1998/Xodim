@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from .forms import EmpleadoForm, SintomatologiaForm
-from .models import Empleado, Sintomatología
+from .forms import EmpleadoForm, SintomatologiaForm, horarioForm
+from .models import Empleado, Sintomatología, horario
 
 #class view():
 #     dispatch: verifica el metodo de la solicitud http y ya no se necesita los iff ni get ni post
@@ -45,3 +45,9 @@ class sintomatologiaCreate(CreateView):
      form_class = SintomatologiaForm
      template_name = 'registroSintomatologia.html'
      success_url = reverse_lazy('iniciarSesion')
+
+class horarioCreate(CreateView):
+     model = horario
+     form_class = horarioForm
+     template_name = 'registroHorario.html'
+     

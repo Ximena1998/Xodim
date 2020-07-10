@@ -28,5 +28,16 @@ class Sintomatología(models.Model):
     contacto = models.CharField(max_length = 2)
     sintCedula = models.ForeignKey(Empleado, on_delete=models.CASCADE)
 
-
-
+class horario(models.Model):
+    idHorario = models.AutoField(primary_key = True)
+    fechaRegistro = models.DateField(("Date"), default=date.today)
+    horaEntradaM = models.TimeField (auto_now = False)
+    horaSalidaM = models.TimeField (auto_now = False)
+    horaEntradaV = models.TimeField (auto_now = False)
+    horaSalidaV = models.TimeField (auto_now = False)
+    horasExtra = models.IntegerField()
+    sintCedula = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+"""
+class presentacion(models.Model):
+    fecha = models.DateField(("Date"), default=date.today)
+"""

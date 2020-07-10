@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Empleado, Sintomatología
-from .forms import EmpleadoForm, SintomatologiaForm
+from .models import Empleado, Sintomatología # presentacion
+from .forms import EmpleadoForm, SintomatologiaForm, horarioForm # presentacionForm
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -71,9 +71,7 @@ def registerAdmin(request):
         form = UserCreationForm()
     return render(request,'admin.html',{'form':form})
 
-def iniciarSesion (request):
-    
-    return render (request, 'inicioSesion.html')
+
 
 def registroSintomatologia(request):
     if request.method == 'GET': #si la peticion viene por un metodo get lo mande en la varible form
@@ -90,3 +88,25 @@ def registroSintomatologia(request):
              form.save()
              return redirect('iniciarSesion')
     return render (request, 'registroSintomatologia.html', contexto)
+
+def iniciarSesion (request):
+    #form = presentacionForm()
+    return render (request, 'inicioSesion.html')
+
+
+
+def registroHorario(request):
+    if request.method == 'GET': #si la peticion viene por un metodo get lo mande en la varible form
+        form = horarioForm()
+        contexto = {
+             'form':form
+        }
+    else:
+        form = horarioForm(request.POST)
+        contexto = {
+             'form':form
+        }
+        if form.is_valid():
+             form.save()
+             return redirect('registrosSintomatologia')
+    return render (request, 'registroHorario.html', contexto)
