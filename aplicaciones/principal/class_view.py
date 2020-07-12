@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView, TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from .forms import EmpleadoForm, SintomatologiaForm, horarioForm
@@ -13,8 +14,8 @@ from .models import Empleado, Sintomatología, horario
 #     http_not_allowed
 #     para create tengo una funcion post () -- def post (self, request, arg, keyarg)
 
-class empleadoList (ListView):
 
+class empleadoList (ListView):
      model = Empleado, Sintomatología
      template_name = 'index.html'
 

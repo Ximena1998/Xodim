@@ -4,17 +4,17 @@ from .forms import EmpleadoForm, SintomatologiaForm, horarioForm # presentacionF
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 import time
 
-
+@login_required(login_url= 'login_url')
 def inicio(request): #La que me pide peticion del navegador
      empleados = Empleado.objects.all() #select * from Empleado
-     print (empleados)
-     contexto = {
-           'empleados':empleados
-     }
-     return render (request, 'index.html', contexto)
+     
+     return render (request, 'index.html', {'empleados': empleados})
 
+@login_required(login_url= 'login_url')
 def registroEmpleado(request):
     if request.method == 'GET': #si la peticion viene por un metodo get lo mande en la varible form
         form = EmpleadoForm()
@@ -60,7 +60,7 @@ def fecha(request): # primera vista
     print (time.strftime("%d/%m/%y"))
     return 
 
-
+@login_required(login_url= 'login_url')
 def registerAdmin(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -110,7 +110,7 @@ def registroHorario(request):
              form.save()
              return redirect('registrosSintomatologia')
     return render (request, 'registroHorario.html', contexto)
-
+    
 def estadisticas (request):
     #form = presentacionForm()
     return render (request, 'estadisticas.html')
