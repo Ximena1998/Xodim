@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/highcharts.js' %}"></script>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/exporting.js' %}"></script>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/export-data.js' %}"></script>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/accessibility.js' %}"></script>
+</head>
+
+<body>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
+
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Reporte de Sintomas COVID-19'
+            },
+            subtitle: {
+                text: 'Global'
+            },
+            xAxis: {
+                categories: [
+                    'Mucosidad',
+                    'Dolor Muscular',
+                    'Sintoma Gastrointestinal',
+                    'Falta de Aire',
+                    'Fiebre',
+                    'Tos',
+              
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Frecuencia Sintomas'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Frecuencia de Sintomas',
+                showInLegend: false,
+                colorByPoint: true,
+                data: [10]
+
+            }]
+        });
+    </script>
+</body>
+
+</html>

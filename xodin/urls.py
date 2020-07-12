@@ -18,8 +18,8 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from aplicaciones.principal.views import inicio, registroEmpleado, editarEmpleado, eliminarEmpleado, fecha, iniciarSesion, registroSintomatologia, registroHorario
-from aplicaciones.principal.class_view import empleadoList, empleadoCreate, empleadoUpdate, empleadoDelete,  sintomatologiaCreate, horarioCreate
+from aplicaciones.principal.views import inicio, registroEmpleado, editarEmpleado, eliminarEmpleado, fecha, iniciarSesion, registroSintomatologia, registroHorario, estadisticas
+from aplicaciones.principal.class_view import empleadoList, empleadoCreate, empleadoUpdate, empleadoDelete,  sintomatologiaCreate, horarioCreate, estadisticas
 from django.views.generic import TemplateView
 from aplicaciones.principal.models import Empleado
 urlpatterns = [
@@ -31,5 +31,6 @@ urlpatterns = [
     path('', iniciarSesion ,name = 'iniciarSesion'),
     path('registroSintomatologia/', sintomatologiaCreate.as_view(), name = 'registroSintomatologia'),
     path('registroHorario/', horarioCreate.as_view(), name = 'registroHorario'),
-    path('administrador/',include('aplicaciones.principal.urls'))
+    path('administrador/',include('aplicaciones.principal.urls')),
+    path('estadisticas/', estadisticas.as_view() ,name = 'estadisticas'),
 ]

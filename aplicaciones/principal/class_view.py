@@ -50,4 +50,21 @@ class horarioCreate(CreateView):
      model = horario
      form_class = horarioForm
      template_name = 'registroHorario.html'
+class estadisticas(TemplateView):
+
+    template_name = 'estadisticas.html'
+     #def get_grafico(self):
+     #     data = []
+     #    tos = "Si"
+     #    numberTos = 0
+     #    while tos == "Si":
+     #         Sintomatología.objects.filter(tos=tos)
+     #         numberTos += 1
+     #         data.append(int(numberTos))      
+     #    return data
+     
+     #def get_context_data(self, **kwargs):
+     #     context = super().get_context_data(**kwargs)
+     #     context['grafico'] = self.get_grafico()
+     #     return context
      

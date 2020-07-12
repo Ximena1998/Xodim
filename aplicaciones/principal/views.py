@@ -110,3 +110,7 @@ def registroHorario(request):
              form.save()
              return redirect('registrosSintomatologia')
     return render (request, 'registroHorario.html', contexto)
+
+def estadisticas (request):
+    #form = presentacionForm()
+    return render (request, 'estadisticas.html')
