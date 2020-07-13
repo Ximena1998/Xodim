@@ -14,10 +14,7 @@ class presentacionForm(forms.ModelForm):
 class SintomatologiaForm(forms.ModelForm):
     
     class Meta:
-        OPTIONS = [
-            ('Si', 'SI'),
-             ('No', 'NO'),
-        ]
+       
         model = Sintomatología
         
         fields = [
@@ -44,49 +41,35 @@ class SintomatologiaForm(forms.ModelForm):
         }
      
         class SimpleForm(forms.Form):
-            mucosidad = forms.ChoiceField(
-                required=True,
-                label='Enter',
-                initial='Si',
-                disabled='false',
-                widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
-             ) ,
+            mucosidad = forms.IntegerField(label='Multiplex level ',required=False, widget=forms.TextInput()),
             dolorMuscular= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) ,
             sintGastrointestinal= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) ,
             fechaRegistro= forms.TextInput(attrs = {'class':'form-control'}),
             faltaAire= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) ,
             temperatura= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) ,
             tos= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) ,
             contacto= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) ,
             sintCedula= forms.MultipleChoiceField(
                 required=False,
                 widget=forms.CheckboxSelectMultiple,
-                choices='OPTIONS',
              ) 
         
 class horarioForm (forms.ModelForm):
