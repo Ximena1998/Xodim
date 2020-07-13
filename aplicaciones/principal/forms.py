@@ -2,32 +2,93 @@ from django import forms
 from .models import Empleado, Sintomatología,horario
 
 class EmpleadoForm(forms.ModelForm):
+    def __init__(self, *args, **kwards):
+        super().__init__(*args, **kwards)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
+        self.fields['cedula'].widget.attrs['autofocus'] = True
     class Meta:
         model = Empleado
         fields = '__all__'
-"""
-class presentacionForm(forms.ModelForm):
-    class Meta:
-        model = presentacion
-        fields = '__all__'
-"""
+        labels = {
+            'cedula': 'Cedula',
+            'nombres': 'Nombres',
+            'apellidos': 'Apellidos',
+            'email': 'Email',
+            'telefono': 'Teléfono',
+            'fechaNacimiento': 'Fecha de Nacimiento',
+            'direccion': 'Dirección',
+            'cargo': 'Cargo',
+            'valor': 'Valor',
+        }
+        widgets = {
+            'cedula' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'nombres' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'apellidos' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'email' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'telefono' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'fechaNacimiento' : forms.TextInput(
+                attrs = {
+                    'placeholder': 'Ingrese su fecha de Nacimiento',
+                }
+            ),
+            'direccion' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'cargo' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            ),
+            'valor' : forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su número de cédula',
+                    
+                }
+            )
+            
+        }
+
 class SintomatologiaForm(forms.ModelForm):
+    def __init__(self, *args, **kwards):
+        super().__init__(*args, **kwards)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+          
     
     class Meta:
-       
         model = Sintomatología
-        
-        fields = [
-            'mucosidad',
-            'dolorMuscular',
-            'sintGastrointestinal',
-            'fechaRegistro',
-            'faltaAire',
-            'temperatura',
-            'tos',
-            'contacto',
-            'sintCedula',
-        ]
+        fields = '__all__'
         labels = {
             'mucosidad': '¿Tiene mucosidad en la nariz?',
             'dolorMuscular': '¿Tiene dolor muscular?',
@@ -37,9 +98,17 @@ class SintomatologiaForm(forms.ModelForm):
             'temperatura': '¿Tiene Fiebre?',
             'tos': '¿Tienes tos seca y persitente?',
             'contacto': '¿Has tenido contacto estrecho con algún paciente positivo confirmado?',
-            'sintCedula': 'Cédula: ',
+            'sintCedula': 'Cédula',
         }
-     
+        """
+        widgets = {
+            'mucosidad' : forms.CheckboxInput(
+         
+                
+            )
+        }
+        """
+        """
         class SimpleForm(forms.Form):
             mucosidad = forms.IntegerField(label='Multiplex level ',required=False, widget=forms.TextInput()),
             dolorMuscular= forms.MultipleChoiceField(
@@ -72,6 +141,7 @@ class SintomatologiaForm(forms.ModelForm):
                 widget=forms.CheckboxSelectMultiple,
              ) 
         
+"""
 class horarioForm (forms.ModelForm):
      class Meta:
         model = horario
