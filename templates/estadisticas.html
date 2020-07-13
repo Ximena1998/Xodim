@@ -30,12 +30,13 @@
             },
             xAxis: {
                 categories: [
-                    'Mucosidad',
-                    'Dolor Muscular',
-                    'Sintoma Gastrointestinal',
-                    'Falta de Aire',
-                    'Fiebre',
-                    'Tos',
+                    'MUCOSIDAD',
+                    'DOLOR MUSCULAR',
+                    'SINTOMA GASTROINTESTINAL',
+                    'FALTA DE AIRE',
+                    'FIEBRE',
+                    'TOS',
+                    'CONTACTO CON ALGUN CONTAGIADO',
               
                 ],
                 crosshair: true
@@ -43,7 +44,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Frecuencia Sintomas'
+                    text: 'FRECUENCIA DE SÍNTOMAS'
                 }
             },
             tooltip: {
@@ -64,8 +65,7 @@
                 name: 'Frecuencia de Sintomas',
                 showInLegend: false,
                 colorByPoint: true,
-                data: [10]
-
+                data: {{grafico|safe}}
             }]
         });
     </script>

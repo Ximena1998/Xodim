@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from .forms import EmpleadoForm, SintomatologiaForm, horarioForm
 from .models import Empleado, Sintomatología, horario
+from django.db.models import Sum
 
 #class view():
 #     dispatch: verifica el metodo de la solicitud http y ya no se necesita los iff ni get ni post
@@ -42,6 +43,7 @@ class empleadoDelete (DeleteView):
      success_url = reverse_lazy('index')
 
 class sintomatologiaCreate(CreateView):
+
      model = Sintomatología
      form_class = SintomatologiaForm
      template_name = 'registroSintomatologia.html'
@@ -52,20 +54,39 @@ class horarioCreate(CreateView):
      form_class = horarioForm
      template_name = 'registroHorario.html'
 class estadisticas(TemplateView):
+     template_name = 'estadisticas.html'
+     def get_grafico(self):
+          data = []
+          try:
+              bd = Sintomatología.objects.all()
+              numberMuco = bd.aggregate(numberMuco=Sum('mucosidad')).get('numberMuco') 
+              data.append(int(numberMuco))
 
-    template_name = 'estadisticas.html'
-     #def get_grafico(self):
-     #     data = []
-     #    tos = "Si"
-     #    numberTos = 0
-     #    while tos == "Si":
-     #         Sintomatología.objects.filter(tos=tos)
-     #         numberTos += 1
-     #         data.append(int(numberTos))      
-     #    return data
+              numberDolorM = bd.aggregate(numberDolorM=Sum('dolorMuscular')).get('numberDolorM') 
+              data.append(int(numberDolorM))
+
+              numberSintG = bd.aggregate(numberSintG=Sum('sintGastrointestinal')).get('numberSintG') 
+              data.append(int(numberSintG))
+
+              numberFaltaAire = bd.aggregate(numberFaltaAire=Sum('faltaAire')).get('numberFaltaAire') 
+              data.append(int(numberFaltaAire))
+
+              numberTemp = bd.aggregate(numberTemp=Sum('temperatura')).get('numberTemp') 
+              data.append(int(numberTemp))
+
+              numberTos = bd.aggregate(numberTos=Sum('tos')).get('numberTos') 
+              data.append(int(numberTos))
+
+              numberContacto = bd.aggregate(numberContacto=Sum('contacto')).get('numberContacto') 
+              data.append(int(numberContacto))
+          except:
+               pass
+
+          
+          return data
+          print(data)
      
-     #def get_context_data(self, **kwargs):
-     #     context = super().get_context_data(**kwargs)
-     #     context['grafico'] = self.get_grafico()
-     #     return context
-     
+     def get_context_data(self, **kwargs):
+          context = super().get_context_data(**kwargs)
+          context['grafico'] = self.get_grafico()
+          return context
