@@ -31,25 +31,25 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'nombres' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese sus nombres',
                     
                 }
             ),
             'apellidos' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese sus apellidos',
                     
                 }
             ),
             'email' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese su email',
                     
                 }
             ),
             'telefono' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese su número de teléfono',
                     
                 }
             ),
@@ -60,19 +60,19 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'direccion' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese su dirección',
                     
                 }
             ),
             'cargo' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese el cargo',
                     
                 }
             ),
             'valor' : forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su número de cédula',
+                    'placeholder': 'Ingrese el valor por hora a pagar',
                     
                 }
             )
