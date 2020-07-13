@@ -15,4 +15,5 @@ urlpatterns = [
     path('editarEmpleado/<str:pk>/', empleadoUpdate.as_view(), name = 'editarEmpleado'),
     path('eliminarEmpleado/<str:pk>/', empleadoDelete.as_view(), name = 'eliminarEmpleado'),
     path('estadisticas/', estadisticas.as_view() ,name = 'estadisticas'),
+    path('estadisticas/', estadisticas.as_view() ,name = 'estadisticas'),
 ]
