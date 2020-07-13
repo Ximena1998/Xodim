@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from django.core.validators import MinLengthValidator, MaxLengthValidator
 # Create your models here.
 
 class Empleado(models.Model):
@@ -17,15 +18,22 @@ class Empleado(models.Model):
  #   return self.nombres
     
 class Sintomatología(models.Model):
+    SI = 1
+    NO = 0
+    Opciones = [
+        (SI, 'Si'),
+        (NO, 'No'),
+       
+    ]
     id = models.AutoField(primary_key = True)
-    mucosidad = models.CharField(max_length = 2)
-    dolorMuscular = models.CharField(max_length = 2)
-    sintGastrointestinal = models.CharField(max_length = 2)
+    mucosidad = models.IntegerField(choices=Opciones)
+    dolorMuscular = models.IntegerField(choices=Opciones)
+    sintGastrointestinal = models.IntegerField(choices=Opciones)
     fechaRegistro = models.DateField(("Date"), default=date.today)
-    faltaAire = models.CharField(max_length = 2)
-    temperatura = models.CharField(max_length = 2)
-    tos = models.CharField(max_length = 2)
-    contacto = models.CharField(max_length = 2)
+    faltaAire = models.IntegerField(choices=Opciones)
+    temperatura = models.IntegerField(choices=Opciones)
+    tos = models.IntegerField(choices=Opciones)
+    contacto = models.IntegerField(choices=Opciones)
     sintCedula = models.ForeignKey(Empleado, on_delete=models.CASCADE)
 
 class horario(models.Model):
