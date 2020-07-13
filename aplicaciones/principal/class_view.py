@@ -20,22 +20,17 @@ class empleadoList (ListView):
      model = Empleado, Sintomatología
      template_name = 'index.html'
 
-
 class empleadoCreate(CreateView):
      model = Empleado
      form_class = EmpleadoForm
      template_name = 'registroEmp.html'
      success_url = reverse_lazy('index')
 
-     
-
-
 class empleadoUpdate (UpdateView):
      model = Empleado
      form_class = EmpleadoForm
      template_name = 'editar.html'
      success_url = reverse_lazy('index')
-
 
 class empleadoDelete (DeleteView):
      model = Empleado
@@ -53,8 +48,10 @@ class horarioCreate(CreateView):
      model = horario
      form_class = horarioForm
      template_name = 'registroHorario.html'
+
 class estadisticas(TemplateView):
      template_name = 'estadisticas.html'
+     
      def get_grafico(self):
           data = []
           try:
@@ -80,11 +77,8 @@ class estadisticas(TemplateView):
               numberContacto = bd.aggregate(numberContacto=Sum('contacto')).get('numberContacto') 
               data.append(int(numberContacto))
           except:
-               pass
-
-          
+               pass       
           return data
-          print(data)
      
      def get_context_data(self, **kwargs):
           context = super().get_context_data(**kwargs)

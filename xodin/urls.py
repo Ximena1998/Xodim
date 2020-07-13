@@ -24,13 +24,9 @@ from django.views.generic import TemplateView
 from aplicaciones.principal.models import Empleado
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('registro/',empleadoCreate.as_view(), name = 'index'),
-    #path('listaEmpleado/',empleadoList.as_view(model=Empleado), name='tables'),
-    #path('editarEmpleado/<str:pk>/', empleadoUpdate.as_view(), name = 'editarEmpleado'),
-    #path('eliminarEmpleado/<str:pk>/', empleadoDelete.as_view(), name = 'eliminarEmpleado'),
     path('', iniciarSesion ,name = 'iniciarSesion'),
     path('registroSintomatologia/', sintomatologiaCreate.as_view(), name = 'registroSintomatologia'),
     path('registroHorario/', horarioCreate.as_view(), name = 'registroHorario'),
     path('administrador/',include('aplicaciones.principal.urls')),
-    path('estadisticas/', estadisticas.as_view() ,name = 'estadisticas'),
+    
 ]
