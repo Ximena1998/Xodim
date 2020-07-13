@@ -24,6 +24,10 @@
   <!-- Custom styles for this page -->
   <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
+  <link href="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.css' %}" rel="stylesheet" type="text/css">
+ 
+  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -192,7 +196,6 @@
                       <th scope="col">Cargo</th>
                       <th scope="col">Valor</th>
                       <th scope="col">Opción</th>
-                      <th scope="col"> fecha</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -207,9 +210,28 @@
                       <td>{{empleado.direccion}}</td>
                       <td>{{empleado.cargo}}</td>
                       <td>{{empleado.valor}}</td>
-                      <td> <a class="btn btn-success" style="margin: 0px 10px 0px"
-                          href="{% url 'editarEmpleado' empleado.cedula%} ">EDITAR</a> <a class="btn btn-danger"
-                          href="{% url 'eliminarEmpleado' empleado.cedula%}">ELIMINAR</a></td>
+                      <td>  
+                          <a class="btn btn-danger" style="margin: 0px 10px 0px" data-toggle="modal" data-target="#exampleModal">OPCIONES</a></td>
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Opciones Empleado</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Elija una opcion: 
+                                </div>
+                                <div class="modal-footer">
+                                  <a class="btn btn-success"  href="{% url 'editarEmpleado' empleado.cedula%} ">EDITAR</a>
+                                  <a class="btn btn-danger" href="{% url 'eliminarEmpleado' empleado.cedula%}">ELIMINAR</a></td>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </tr>
                     {% endfor %}
                   </tbody>
@@ -264,6 +286,7 @@
       </div>
     </div>
   </div>
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -281,6 +304,9 @@
 
   <!-- Page level custom scripts -->
   <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+
+  <script src="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.js' %}"></script>
+
 
 </body>
 
