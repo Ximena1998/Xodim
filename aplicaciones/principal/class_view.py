@@ -8,6 +8,8 @@ from django.urls import reverse_lazy
 from .forms import EmpleadoForm, SintomatologiaForm, horarioForm
 from .models import Empleado, Sintomatología, horario
 from django.db.models import Sum
+import datetime
+from django.http import HttpResponse
 
 #class view():
 #     dispatch: verifica el metodo de la solicitud http y ya no se necesita los iff ni get ni post
@@ -84,3 +86,16 @@ class estadisticas(TemplateView):
           context = super().get_context_data(**kwargs)
           context['grafico'] = self.get_grafico()
           return context
+'''
+class iniciarSesion(CreateView):
+    model = horario
+    form_class = horarioForm
+    template_name = 'inicioSesion.html'
+    success_url = reverse_lazy('iniciarSesion')
+    '''
+def momentoActual(request):
+     respuesta = format(datetime.datetime.now().strftime("%A %d/%m/%Y %H:%M:%S"))
+     return render(request, 'inicioSesion.html',{"dameFecha":respuesta})
+          
+
+     

@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 import time
+import datetime
+from django.http import HttpResponse
 
 @login_required(login_url= 'login_url')
 def inicio(request): #La que me pide peticion del navegador
@@ -90,7 +92,6 @@ def registroSintomatologia(request):
     return render (request, 'registroSintomatologia.html', contexto)
 
 def iniciarSesion (request):
-    #form = presentacionForm()
     return render (request, 'inicioSesion.html')
 
 
