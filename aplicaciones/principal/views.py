@@ -89,7 +89,7 @@ def registroSintomatologia(request):
         }
         if form.is_valid():
             form.save()
-            return redirect('iniciarSesion')
+            return redirect('biometrico')
     return render(request, 'registroSintomatologia.html', contexto)
 
 

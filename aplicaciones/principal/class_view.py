@@ -48,7 +48,7 @@ class sintomatologiaCreate(CreateView):
     model = Sintomatologia
     form_class = SintomatologiaForm
     template_name = 'registroSintomatologia.html'
-    success_url = reverse_lazy('iniciarSesion')
+    success_url = reverse_lazy('biometrico')
 
 
 class horarioCreate(CreateView):

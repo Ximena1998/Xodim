@@ -1,6 +1,5 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
-
 from aplicaciones.principal.class_view import empleadoUpdate, empleadoDelete, estadisticas
 from aplicaciones.principal.views import inicio, registroEmpleado, BiometricoCreate, BiometricoListado, \
     BiometricoDelete, ReporteSalarios
