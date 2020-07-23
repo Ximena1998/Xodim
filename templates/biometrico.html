@@ -1,7 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+   
     <title>{{ title }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,21 +12,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<div class="container mt-5">
-    <form method="post" action=".">
-        <div class="card">
-            <div class="card-header">
-                <h3><b>Biometrico de Empleado</b></h3>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Ingrese su número de cedula:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="dni" maxlength="10" required autocomplete="off"
-                               value=""
-                               placeholder="Ingrese un número de cedula">
+    <div class="container mt-5">
+        <form method="post" action=".">
+            <div class="card">
+                <div class="card-header">
+                    <h3><b>Biometrico de Empleado</b></h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Ingrese su número de cedula:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="dni" maxlength="10" required autocomplete="off"
+                                   value=""
+                                   placeholder="Ingrese un número de cedula">
+                            
+                        </div>
                         <div class="input-group-append">
                             <button type="button" class="btn btn-primary btn-biometric" disabled data-id="horaEntradaM">
                                 <i class="fas fa-clock"></i> EntradaM
@@ -41,81 +52,86 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <h1 id="time" class="text-center"></h1>
+                    <hr>
+                    <a href="{% url 'registroSintomatologia' %}" class="btn btn-secondary btn-block">
+                        <i class="fas fa-home"></i> Retornar
+                    </a>
+                    <a href="{% url 'login_url' %}" class="btn btn-dark btn-block">
+                        <i class="fas fa-home"></i> Administrador
+                    </a>
+                </div>
             </div>
-            <div class="card-footer">
-                <h1 id="time" class="text-center"></h1>
-                <hr>
-                <a href="{% url 'registroSintomatologia' %}" class="btn btn-secondary btn-block">
-                    <i class="fas fa-home"></i> Retornar
-                </a>
-                <a href="{% url 'login_url' %}" class="btn btn-dark btn-block">
-                    <i class="fas fa-home"></i> Administrador
-                </a>
-            </div>
-        </div>
-    </form>
-</div>
-
-<script type="application/javascript">
-
-    function startTime() {
-
-        function checkTime(i) {
-            return (i < 10) ? "0" + i : i;
+        </form>
+    </div>
+    
+    <script type="application/javascript">
+    
+        function startTime() {
+    
+            function checkTime(i) {
+                return (i < 10) ? "0" + i : i;
+            }
+    
+            var today = new Date(),
+                h = checkTime(today.getHours()),
+                m = checkTime(today.getMinutes()),
+                s = checkTime(today.getSeconds());
+            var hour = h + ":" + m + ":" + s;
+    
+            $('#time').html(hour);
+    
+            t = setTimeout(function () {
+                startTime();
+            }, 500);
         }
-
-        var today = new Date(),
-            h = checkTime(today.getHours()),
-            m = checkTime(today.getMinutes()),
-            s = checkTime(today.getSeconds());
-        var hour = h + ":" + m + ":" + s;
-
-        $('#time').html(hour);
-
-        t = setTimeout(function () {
-            startTime();
-        }, 500);
-    }
-
-    $(function () {
-
-        $('input[name="dni"]').on('keyup', function (e) {
-            var id = $(this).val().trim().length;
-            console.log(id);
-            $('.btn-biometric').prop('disabled', id !== 10);
-        });
-
-
-        $('.btn-biometric').on('click', function () {
-            var dni = $('input[name="dni"]').val();
-
-            var parameters = {
-                'dni': dni,
-                'action': 'create_horary',
-                'horary': $(this).data('id')
-            };
-
-            $.ajax({
-                url: "{% url 'biometrico' %}",
-                data: parameters,
-                method: 'POST',
-                dataType: 'json',
-                success: function (request) {
-                    if (!request.hasOwnProperty('error')) {
-                        alert('Asistencia registrada correctamente');
-                        location.reload();
-                        return false;
-                    }
-                    alert(request.error);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert(errorThrown + ' ' + textStatus);
-                }
+    
+        $(function () {
+    
+            $('input[name="dni"]').on('keyup', function (e) {
+                var id = $(this).val().trim().length;
+                console.log(id);
+                $('.btn-biometric').prop('disabled', id !== 10);
             });
+    
+    
+            $('.btn-biometric').on('click', function () {
+                var dni = $('input[name="dni"]').val();
+    
+                var parameters = {
+                    'dni': dni,
+                    'action': 'create_horary',
+                    'horary': $(this).data('id')
+                };
+    
+                $.ajax({
+                    url: "{% url 'biometrico' %}",
+                    data: parameters,
+                    method: 'POST',
+                    dataType: 'json',
+                    success: function (request) {
+                        if (!request.hasOwnProperty('error')) {
+                            alert('Asistencia registrada correctamente');
+                            location.reload();
+                            return false;
+                        }
+                        alert(request.error);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown + ' ' + textStatus);
+                    }
+                });
+            });
+    
+            startTime();
         });
-
-        startTime();
-    });
-</script>
-</body>
+    </script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    </body>
 </html>
+
+
+
+
