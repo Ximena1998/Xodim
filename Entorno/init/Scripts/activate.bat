@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\hxpuc\Desktop\Metodologias\Xodim\Entorno\init"
+set "VIRTUAL_ENV=C:\Users\hxpuc\Desktop\Proyecto-Xodim\xodim-master\Entorno\init"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

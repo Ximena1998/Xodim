@@ -4,97 +4,115 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Xodim Admin</title>
-  <!-- Custom fonts for this template -->
-  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-  <!-- Custom styles for this page -->
-  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
-  <link href="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
-  <link href="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
-  <script src="{% static 'Lib/Highcharts-8.1.2/code/highcharts.js' %}"></script>
-  <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/exporting.js' %}"></script>
-  <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/export-data.js' %}"></script>
-  <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/accessibility.js' %}"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Xodim Admin</title>
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/highcharts.js' %}"></script>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/exporting.js' %}"></script>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/export-data.js' %}"></script>
+    <script src="{% static 'Lib/Highcharts-8.1.2/code/modules/accessibility.js' %}"></script>
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">XODIM<sup>1</sup></div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            ADMINISTRADORES
         </div>
-        <div class="sidebar-brand-text mx-3">XODIM<sup>1</sup></div>
-      </a>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'register_url' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Registrar Administrador</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        ADMINISTRADORES
-      </div>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'register_url' %}">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Registrar Administrador</span></a>
-      </li>
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        EMPLEADOS
-      </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            EMPLEADOS
+        </div>
 
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'registroEmp' %}">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Registrar Empleado</span></a>
-      </li>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'registroEmp' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Registrar Empleado</span></a>
+        </li>
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'index' %}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Lista de Empleados</span></a>
-      </li>
-      <!-- Nav Item - Charts -->
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'estadisticas' %}">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Estadisticas</span></a>
-      </li>
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Lista de Empleados</span></a>
+        </li>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'estadisticas' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Estadisticas</span></a>
+        </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'biometrico' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Tomar asistencia</span></a>
+        </li>
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'biometrico_listado' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Ver marcaciones</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'reporte_salarios' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Reporte de Salarios</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -102,133 +120,135 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+        <!-- Main Content -->
+        <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-              <i class="fa fa-bars"></i>
-            </button>
-          </form>
+                <!-- Sidebar Toggle (Topbar) -->
+                <form class="form-inline">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </form>
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
 
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+                    <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
+                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
 
-                <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" href="{% url 'logout' %} ">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
+                            <a class="dropdown-item" href="{% url 'logout' %} ">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
 
-              </div>
-            </li>
+                        </div>
+                    </li>
 
-          </ul>
+                </ul>
 
-        </nav>
-        <!-- End of Topbar -->
+            </nav>
+            <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <figure class="highcharts-figure">
-              <div id="container"></div>
-            </figure>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
 
-            <script>
-              Highcharts.chart('container', {
-                chart: {
-                  type: 'column'
-                },
-                title: {
-                  text: 'Reporte de Sintomas COVID-19'
-                },
-                subtitle: {
-                  text: 'Global'
-                },
-                xAxis: {
-                  categories: [
-                    'MUCOSIDAD',
-                    'DOLOR MUSCULAR',
-                    'SINTOMA GASTROINTESTINAL',
-                    'FALTA DE AIRE',
-                    'FIEBRE',
-                    'TOS',
-                    'CONTACTO CON ALGUN CONTAGIADO',
+                    <script>
+                        Highcharts.chart('container', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Reporte de Sintomas COVID-19'
+                            },
+                            subtitle: {
+                                text: 'Global'
+                            },
+                            xAxis: {
+                                categories: [
+                                    'MUCOSIDAD',
+                                    'DOLOR MUSCULAR',
+                                    'SINTOMA GASTROINTESTINAL',
+                                    'FALTA DE AIRE',
+                                    'FIEBRE',
+                                    'TOS',
+                                    'CONTACTO CON ALGUN CONTAGIADO',
 
-                  ],
-                  crosshair: true
-                },
-                yAxis: {
-                  min: 0,
-                  title: {
-                    text: 'FRECUENCIA DE SÍNTOMAS'
-                  }
-                },
-                tooltip: {
-                  headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                  pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-                  footerFormat: '</table>',
-                  shared: true,
-                  useHTML: true
-                },
-                plotOptions: {
-                  column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                  }
-                },
-                series: [{
-                  name: 'Frecuencia de Sintomas',
-                  showInLegend: false,
-                  colorByPoint: true,
-                  data: {{ grafico| safe}}
-                  }]
-              });
-            </script>
-          </div>
+                                ],
+                                crosshair: true
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'FRECUENCIA DE SÍNTOMAS'
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [{
+                                name: 'Frecuencia de Sintomas',
+                                showInLegend: false,
+                                colorByPoint: true,
+                                data: {{ grafico| safe}}
+                            }]
+                        });
+                    </script>
+                </div>
+            </div>
         </div>
-      </div>
         <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your FlatSoftware 2020</span>
-          </div>
-        </div>
-      </footer>
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your FlatSoftware 2020</span>
+                </div>
+            </div>
+        </footer>
     </div>
-    </div>
-  <a class="scroll-to-top rounded" href="#page-top">
+</div>
+<a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
-  </a>
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'endor/jquery-easing/jquery.easing.min.js' %}"></script>
-  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
-  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-  <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
-  <script src="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.js' %}"></script>
+</a>
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'endor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+<script src="{% static 'Lib/jquery-confirm-v3.3.4/jquery-confirm-min.js' %}"></script>
 </body>
 </html>

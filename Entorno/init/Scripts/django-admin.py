@@ -1,4 +1,4 @@
-#!C:\Users\hxpuc\Desktop\Metodologias\Xodim\Entorno\init\Scripts\python.exe
+#!C:\Users\hxpuc\Desktop\Proyecto-Xodim\xodim-master\Entorno\init\Scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":
