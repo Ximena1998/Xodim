@@ -40,7 +40,7 @@ def registroEmpleado(request):
             return redirect('index')
     return render(request, 'registroEmp.html', contexto)
 
-
+@login_required(login_url='login_url')
 def editarEmpleado(request, Cedula):
     empleado = Empleado.objects.get(cedula=Cedula)
     if request.method == 'GET':
@@ -58,17 +58,11 @@ def editarEmpleado(request, Cedula):
             return redirect('index')
     return render(request, 'index.html', contexto)
 
-
+@login_required(login_url='login_url')
 def eliminarEmpleado(request, Cedula):
     empleado = Empleado.objects.get(cedula=Cedula)
     empleado.delete()
     return redirect('index')
-
-
-def fecha(request):  # primera vista
-    print(time.strftime("%H:%M:%S"))  # Formato de 24 horas
-    print(time.strftime("%d/%m/%y"))
-    return
 
 
 @login_required(login_url='login_url')
@@ -100,27 +94,7 @@ def registroSintomatologia(request):
     return render(request, 'registroSintomatologia.html', contexto)
 
 
-def iniciarSesion(request):
-    return render(request, 'inicioSesion.html')
-
-
-def registroHorario(request):
-    if request.method == 'GET':  # si la peticion viene por un metodo get lo mande en la varible form
-        form = horarioForm()
-        contexto = {
-            'form': form
-        }
-    else:
-        form = horarioForm(request.POST)
-        contexto = {
-            'form': form
-        }
-        if form.is_valid():
-            form.save()
-            return redirect('registrosSintomatologia')
-    return render(request, 'registroHorario.html', contexto)
-
-
+@login_required(login_url='login_url')
 def estadisticas(request):
     # form = presentacionForm()
     return render(request, 'estadisticas.html')
@@ -217,8 +191,10 @@ class ReporteSalarios(TemplateView):
                     emp = Empleado.objects.get(cedula=emp)
                     h = h.filter(sintCedula_id=emp.cedula).order_by('fechaRegistro')
                     total = 0
+                    #totalMin = 0
                     for i in h:
                         horas = i.get_hours()
+                        #minutos = i.get_minutes()
                         data.append({
                             'fechaRegistro': i.fechaRegistro.strftime('%d-%m-%Y'),
                             'horaEntrada': i.get_format_hour(i.horaEntradaM),
@@ -226,8 +202,10 @@ class ReporteSalarios(TemplateView):
                             'horaEntradaV': i.get_format_hour(i.horaEntradaV),
                             'horaSalidaV': i.get_format_hour(i.horaSalidaV),
                             'horas': horas
+                            #'minutos': minutos
                         })
                         total+=horas
+                        #totalMin+=minutos
 
                     data.append({
                         'fechaRegistro': '---',
@@ -237,6 +215,7 @@ class ReporteSalarios(TemplateView):
                         'horaSalidaV': 'Cantidad de horas',
                         'sintCedula': '---',
                         'horas': total
+                        #'minutos': totalMin
                     })
 
                     salario = total * float(emp.valor)
@@ -248,7 +227,8 @@ class ReporteSalarios(TemplateView):
                         'horaEntradaV': '---',
                         'horaSalidaV': 'Salario total',
                         'sintCedula': '---',
-                        'horas': format(salario, '.2f')
+                        'horas': format(salario, '.2f'),
+                        'minutos': '---'
                     })
             else:
                 data['error'] = 'No ha seleccionado ninguna opción'

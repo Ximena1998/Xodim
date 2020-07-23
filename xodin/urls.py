@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from aplicaciones.principal.views import inicio, registroEmpleado, editarEmpleado, eliminarEmpleado, fecha,  registroSintomatologia, registroHorario, estadisticas
+from aplicaciones.principal.views import inicio, registroEmpleado, editarEmpleado, eliminarEmpleado, registroSintomatologia, estadisticas
 from aplicaciones.principal.class_view import  sintomatologiaCreate,horarioCreate, momentoActual, iniciarSesion
 from django.views.generic import TemplateView
 from aplicaciones.principal.models import Empleado
