@@ -19,10 +19,10 @@ class EmpleadoForm(forms.ModelForm):
             'apellidos': 'Apellidos',
             'email': 'Email',
             'telefono': 'Teléfono',
-            'fechaNacimiento': 'Fecha de Nacimiento',
+            'fechaNacimiento': '1998-02-25',
             'direccion': 'Dirección',
             'cargo': 'Cargo',
-            'valor': 'Valor',
+            'valor': '2.10',
         }
         widgets = {
             'cedula': forms.TextInput(
