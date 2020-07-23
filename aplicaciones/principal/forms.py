@@ -19,10 +19,10 @@ class EmpleadoForm(forms.ModelForm):
             'apellidos': 'Apellidos',
             'email': 'Email',
             'telefono': 'Teléfono',
-            'fechaNacimiento': '1998-02-25',
+            'fechaNacimiento': 'Fecha de Nacimiento',
             'direccion': 'Dirección',
             'cargo': 'Cargo',
-            'valor': '2.10',
+            'valor': 'Valor',
         }
         widgets = {
             'cedula': forms.TextInput(
@@ -57,7 +57,7 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'fechaNacimiento': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su fecha de Nacimiento',
+                    'placeholder': '1998-02-25',
                 }
             ),
             'direccion': forms.TextInput(
@@ -74,7 +74,7 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'valor': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese el valor por hora a pagar',
+                    'placeholder': '2.10',
 
                 }
             )
