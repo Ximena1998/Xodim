@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\hxpuc\Desktop\Proyecto-Xodim\xodim-master\Entorno\init'
+VIRTUAL_ENV='C:\Users\hxpuc\Desktop\Proyecto-Xodim\Xodim\Entorno\init'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

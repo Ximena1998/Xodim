@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"C:\Users\hxpuc\Desktop\Proyecto-Xodim\xodim-master\Entorno\init"
+$VIRTUAL_ENV = r"C:\Users\hxpuc\Desktop\Proyecto-Xodim\Xodim\Entorno\init"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]
