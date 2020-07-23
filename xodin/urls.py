@@ -24,9 +24,9 @@ from django.views.generic import TemplateView
 from aplicaciones.principal.models import Empleado
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicioSesion/', iniciarSesion.as_view(), name = 'iniciarSesion'),
     path('', sintomatologiaCreate.as_view(), name = 'registroSintomatologia'),
     path('registroHorario/', horarioCreate.as_view(), name = 'registroHorario'),
+    path('biometrico/', BiometricoCreate.as_view(), name='biometrico'),
     path('administrador/',include('aplicaciones.principal.urls')),
     path('momentoActual/',momentoActual),
 ]

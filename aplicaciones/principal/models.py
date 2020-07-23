@@ -74,7 +74,3 @@ class horario(models.Model):
         return 0
 
 
-"""
-class presentacion(models.Model):
-    fecha = models.DateField(("Date"), default=date.today)
-"""
