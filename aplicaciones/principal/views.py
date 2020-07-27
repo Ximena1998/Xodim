@@ -1,16 +1,19 @@
+import ast
 import json
 import time
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, View, DeleteView
+
 from .forms import EmpleadoForm, SintomatologiaForm, horarioForm, ReporteSalarioForm
-from .models import Empleado, horario
+from .models import Empleado, horario, Sintomatologia
 from time import *
 from datetime import *
 
@@ -39,7 +42,7 @@ def registroEmpleado(request):
             return redirect('index')
     return render(request, 'registroEmp.html', contexto)
 
-@login_required(login_url='login_url')
+
 def editarEmpleado(request, Cedula):
     empleado = Empleado.objects.get(cedula=Cedula)
     if request.method == 'GET':
@@ -57,11 +60,17 @@ def editarEmpleado(request, Cedula):
             return redirect('index')
     return render(request, 'index.html', contexto)
 
-@login_required(login_url='login_url')
+
 def eliminarEmpleado(request, Cedula):
     empleado = Empleado.objects.get(cedula=Cedula)
     empleado.delete()
     return redirect('index')
+
+
+def fecha(request):  # primera vista
+    print(time.strftime("%H:%M:%S"))  # Formato de 24 horas
+    print(time.strftime("%d/%m/%y"))
+    return
 
 
 @login_required(login_url='login_url')
@@ -89,11 +98,31 @@ def registroSintomatologia(request):
         }
         if form.is_valid():
             form.save()
-            return redirect('biometrico')
+            return redirect('iniciarSesion')
     return render(request, 'registroSintomatologia.html', contexto)
 
 
-@login_required(login_url='login_url')
+def iniciarSesion(request):
+    return render(request, 'inicioSesion.html')
+
+
+def registroHorario(request):
+    if request.method == 'GET':  # si la peticion viene por un metodo get lo mande en la varible form
+        form = horarioForm()
+        contexto = {
+            'form': form
+        }
+    else:
+        form = horarioForm(request.POST)
+        contexto = {
+            'form': form
+        }
+        if form.is_valid():
+            form.save()
+            return redirect('registrosSintomatologia')
+    return render(request, 'registroHorario.html', contexto)
+
+
 def estadisticas(request):
     # form = presentacionForm()
     return render(request, 'estadisticas.html')
@@ -116,24 +145,39 @@ class BiometricoCreate(TemplateView):
                 emp = Empleado.objects.filter(cedula=dni)
                 if emp.exists():
                     emp = emp[0]
+                    # validar sintomas
+                    fechaRegistro = datetime.now()
+                    fechaRegistro_3dias = fechaRegistro - timedelta(days=3)
+                    sintomas = Sintomatologia.objects.filter(sintCedula=emp,
+                                                             fechaRegistro__range=[fechaRegistro_3dias, fechaRegistro])
+                    validate = 0
+                    if sintomas.exists():
+                        data = ast.literal_eval(serializers.serialize('json', [sintomas[0], ]))[0].get('fields')
+                        for k, v in data.items():
+                            if type(v) == int:
+                                validate += v
 
-                    h = horario.objects.filter(sintCedula=emp.cedula, fechaRegistro=datetime.now())
-                    if h.exists():
-                        h = h[0]
+                    if validate > 2:
+                        data = {
+                            'error': 'El empleado tiene sintomas de covid 19 desde hace 3 días, no pudede registrarse su asistencia porque debe ser atendido'}
                     else:
-                        h = horario()
-                    h.sintCedula_id = emp.cedula
-                    hour = datetime.now().strftime('%H:%M')
+                        h = horario.objects.filter(sintCedula=emp.cedula, fechaRegistro=datetime.now())
+                        if h.exists():
+                            h = h[0]
+                        else:
+                            h = horario()
+                        h.sintCedula_id = emp.cedula
+                        hour = datetime.now().strftime('%H:%M')
 
-                    if horary == 'horaEntradaM':
-                        h.horaEntradaM = hour
-                    elif horary == 'horaSalidaM':
-                        h.horaSalidaM = hour
-                    elif horary == 'horaEntradaV':
-                        h.horaEntradaV = hour
-                    elif horary == 'horaSalidaV':
-                        h.horaSalidaV = hour
-                    h.save()
+                        if horary == 'horaEntradaM':
+                            h.horaEntradaM = hour
+                        elif horary == 'horaSalidaM':
+                            h.horaSalidaM = hour
+                        elif horary == 'horaEntradaV':
+                            h.horaEntradaV = hour
+                        elif horary == 'horaSalidaV':
+                            h.horaSalidaV = hour
+                        h.save()
                 else:
                     data = {'error': 'El empleado no se encuentra registrado'}
             else:
@@ -190,10 +234,8 @@ class ReporteSalarios(TemplateView):
                     emp = Empleado.objects.get(cedula=emp)
                     h = h.filter(sintCedula_id=emp.cedula).order_by('fechaRegistro')
                     total = 0
-                    #totalMin = 0
                     for i in h:
                         horas = i.get_hours()
-                        #minutos = i.get_minutes()
                         data.append({
                             'fechaRegistro': i.fechaRegistro.strftime('%d-%m-%Y'),
                             'horaEntrada': i.get_format_hour(i.horaEntradaM),
@@ -201,20 +243,17 @@ class ReporteSalarios(TemplateView):
                             'horaEntradaV': i.get_format_hour(i.horaEntradaV),
                             'horaSalidaV': i.get_format_hour(i.horaSalidaV),
                             'horas': horas
-                            #'minutos': minutos
                         })
-                        total+=horas
-                        #totalMin+=minutos
+                        total += horas
 
                     data.append({
                         'fechaRegistro': '---',
                         'horaEntrada': '---',
                         'horaSalidaM': '---',
-                        'horaEntradaV':'---',
+                        'horaEntradaV': '---',
                         'horaSalidaV': 'Cantidad de horas',
                         'sintCedula': '---',
                         'horas': total
-                        #'minutos': totalMin
                     })
 
                     salario = total * float(emp.valor)
@@ -226,8 +265,7 @@ class ReporteSalarios(TemplateView):
                         'horaEntradaV': '---',
                         'horaSalidaV': 'Salario total',
                         'sintCedula': '---',
-                        'horas': format(salario, '.2f'),
-                        'minutos': '---'
+                        'horas': format(salario, '.2f')
                     })
             else:
                 data['error'] = 'No ha seleccionado ninguna opción'
